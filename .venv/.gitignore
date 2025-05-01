@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyCharm project settings
+.idea/
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+*.env
+
+# macOS system files
+.DS_Store
+
+# Logs and local settings
+*.log
+*.sqlite
+*.db
+
+# Test, coverage, and cache files
+*.cover
+*.pyc
+*.pyo
+*.pyd
+coverage.xml
+htmlcov/
+.tox/
+.cache/
+.mypy_cache/
+.pytest_cache/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
