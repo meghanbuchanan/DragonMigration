@@ -7,14 +7,13 @@ def load_data():
     return pd.read_csv('data.csv')
 
 def desirability(temp, pop_density, temp_std, pop_std, temp_pref, pop_pref, w_temp, w_pop):
-    temp_score = w_temp * (1 / (1 + ((temp - temp_pref) / temp_std)**2))
-    pop_score = w_pop * (1 / (1 + ((pop_density - pop_pref) / pop_std)**2))
+    temp_score = w_temp * (1 / (1 + ((temp - temp_pref)**2) / temp_std))
+    pop_score = w_pop * (1 / (1 + ((pop_density - pop_pref)**2) / pop_std))
     return temp_score + pop_score
 
 def get_state_neighbors():
     return {
         'Alabama': ['Mississippi', 'Tennessee', 'Florida', 'Georgia', 'Alabama'],
-        # 'Alaska': [],
         'Arizona': ['Nevada', 'Colorado', 'Utah', 'New Mexico', 'California', 'Arizona'],
         'Arkansas': ['Oklahoma', 'Tennessee', 'Texas', 'Louisiana', 'Mississippi', 'Missouri', 'Arkansas'],
         'California': ['Oregon', 'Arizona', 'Nevada', 'California'],
@@ -23,7 +22,6 @@ def get_state_neighbors():
         'Delaware': ['New Jersey', 'Pennsylvania', 'Maryland', 'Delaware'],
         'Florida': ['Georgia', 'Alabama', 'Florida'],
         'Georgia': ['North Carolina', 'South Carolina', 'Tennessee', 'Alabama', 'Florida', 'Georgia'],
-        # 'Hawaii': [],
         'Idaho': ['Utah', 'Washington', 'Wyoming', 'Montana', 'Nevada', 'Oregon', 'Idaho'],
         'Illinois': ['Kentucky', 'Missouri', 'Wisconsin', 'Indiana', 'Iowa', 'Michigan', 'Illinois'],
         'Indiana': ['Michigan', 'Ohio', 'Illinois', 'Kentucky', 'Indiana'],
@@ -116,14 +114,14 @@ state_neighbors = get_state_neighbors()
 temp_std = data['temp'].std()
 pop_std = data['pop_density'].std()
 
-# Set Preferences
-temperature = 100
-population_density = 1000
-temp_weight = 3.0
-pop_weight = 0.5
-
 print(f"Temperature Std: {temp_std}")
 print(f"Population Std: {pop_std}")
+
+# Set Preferences
+temperature = 80
+population_density = 200
+temp_weight = 1.0
+pop_weight = 2.0
 
 # Get Transition Matrix
 transition_matrix = build_transition_matrix(
